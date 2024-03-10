@@ -39,23 +39,38 @@ const ProductDetails = () => {
 
 
     return (
-        <View style={{ backgroundColor: '#fff4e2'}}>
+        <View style={{ backgroundColor: '#fff4e2' }}>
+            {
+                typeof data !== 'undefined' && 
+                data.length < 1 && 
+                <Text>Sorry! Currenty Unable to fetch data</Text>
+            }
             <View style={{ height: 350 }}>
                 <Index images={data.images} />
-                {isLoading && 
-                <ActivityIndicator style={styles.loading} size="large" color="#007AFF" />
+                {isLoading &&
+                    <ActivityIndicator style={styles.loading} size="large" color="#007AFF" />
                 }
             </View>
             <View style={styles.container}>
-                <Text style={styles.title}>{data?.title} </Text>
+                <Text style={styles.title}>{data?.title} | {data?.brand}</Text>
                 <Text>
                     <RatingComponent rating={data?.rating?.toFixed(2)} />
                 </Text>
-                <Text>{data?.description}</Text>
+                <Text style={styles.description}>{data?.description}</Text>
                 <Text style={styles.price}>
-                    Price: ${data?.price?.toFixed(2)} <Text style={styles.originPrice}>${calculateOriginalPrice(data?.price, data?.discountPercentage)}</Text><Text style={styles.discount}> <FontAwesome name="arrow-down" size={12} color="red" /> {data?.discountPercentage?.toFixed(2)}%
-                    </Text></Text>
-                <Text style={styles.stock}>Stock: {data?.stock}</Text>
+                    Price: ${data?.price?.toFixed(2)}
+                    &nbsp;<FontAwesome name="tags" size={12} color="green" />
+                </Text>
+
+                <Text style={styles.discount}>
+                    <Text style={styles.originPrice}>MRP ${calculateOriginalPrice(data?.price, data?.discountPercentage)}
+                    </Text>
+                    &nbsp;<FontAwesome name="arrow-down" size={12} color="red" />
+                    {data?.discountPercentage?.toFixed(2)}%
+                </Text>
+
+                <Text style={styles.stock}>Harry up! only {data?.stock} pieces avaliable </Text>
+                <Text style={styles.extraDetailsHeader}>Additional Details</Text>
                 <Text style={styles.brand}>Brand: {data?.brand}</Text>
                 <Text style={styles.category}>Category: {data?.category}</Text>
             </View>

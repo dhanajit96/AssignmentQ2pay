@@ -39,6 +39,7 @@ export const styles = StyleSheet.create({
         color: 'green',
         fontWeight: 'bold',
         fontSize: 16,
+        marginTop: 5
     },
     discount: {
         color: 'red',
@@ -50,6 +51,12 @@ export const styles = StyleSheet.create({
     },
     stock: {
         fontSize: 14,
+    },
+    extraDetailsHeader:{
+        marginVertical: 8,
+        fontSize: 14,  
+        fontWeight: "bold",
+
     },
     brand: {
         fontSize: 14,
